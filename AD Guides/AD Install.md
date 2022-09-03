@@ -44,3 +44,20 @@ Installation can be verified with the following command. Scroll up to the top an
 Get-WindowsFeature
 ```
 
+### Configure AD DS
+
+First we want to import the module so that we can work with it.
+
+```powershell
+Import-Module ADDSDeployment
+```
+
+Now we want to install our AD DS forest and configure our server as a domain controller.
+
+```powershell
+Install-ADDSForest
+```
+
+From here we will need to choose a domain name and enter in a password. The server will then restart and will now be a domain controller.
+
+One last thing we will need to go back into **SConfig** upon the servers reboot and change the **DNS** to our servers IP and not **127.0.0.1**.
