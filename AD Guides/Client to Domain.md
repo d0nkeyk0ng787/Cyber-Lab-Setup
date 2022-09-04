@@ -2,7 +2,7 @@
 
 ### Join client to domain
 
-If the server isn't a domain and is still a workgroup we must open up our **SConfig** and select option **1**. We then want to input **d** for domain and type in the domain we gave the server. Otherwise continue with next steps.
+If the server isn't part of a domain and is still in a workgroup we must open up our **SConfig** and select option **1**. We then want to input **d** for domain and type in the domain we gave the server. Otherwise continue with next steps.
 
 First we must change the DNS settings for our **Win10** client to the ip of the server so that it can resolve the hostname of said server.
 
@@ -34,3 +34,24 @@ This will then prompt for a password and then the user will be created. This can
 Get-ADUser -Filter *
 ```
 
+### Join a user to a group
+
+Let's say we want to add a user to the domain admins group. First we want to return the name of that group so we do.
+
+```powershell
+Get-AdGroupMember "Administrators"
+```
+
+This will return all the administrator groups. We see **Domain Admins** is what we want.
+
+From there we add our user to this group by doing.
+
+```powershell
+Add-AdGroupMember -Identity "Domain Admins" -Members john
+```
+
+Then we can verify our user has join the group by doing.
+
+```powershell
+Get-AdGroupMember "Domain Admins"
+```
