@@ -1,2 +1,2 @@
 secedit /export /cfg C:\Windows\Tasks\secpol.cfg
-New-NetIPAddress -InterfaceIndex 6 -IPAddress <IPADDRESS> -PrefixLength 24 -DefaultGateway <DEFAULTIPADDRESS>
+New-NetIPAddress -InterfaceIndex 6 -IPAddress <IPADDRESS> -PrefixLength 24 -DefaultGateway <DEFAULTGATEWAY>
