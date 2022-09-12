@@ -37,3 +37,9 @@ Create a superscope. Say we have 2 scopes for wired connections with scope ids o
 ```powershell
 Add-DhcpServerv4SuperScope -SuperScopeName "Wired Connections" -ScopeId 172.16.50.0, 172.16.51.0
 ```
+
+Configure DHCP failover. Ensure the DHCP role has been installed on the partner server. This will create a failover server with a lead time of 1 minute, and will be set to hot standby.
+
+```powershell
+Add-DhcpServerv4Failover -Name "DHCP-Failover" -PartnerServer FAILOVERSVRIP -MaxClientLeadTime 00:01:00 -SharedSecret SECRET -ServerRole Standby -ScopeID SCOPEID, SCOPEID, SCOPEID
+```
