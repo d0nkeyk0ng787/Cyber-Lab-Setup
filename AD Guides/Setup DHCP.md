@@ -1,6 +1,6 @@
 # Setup DHCP
 
-### Configure DHCP scope on AD server
+### Configure DHCPv4 scope on AD server
 
 First we need to install DHCP on the server. 
 
@@ -43,3 +43,18 @@ Configure DHCP failover. Ensure the DHCP role has been installed on the partner 
 ```powershell
 Add-DhcpServerv4Failover -Name "DHCP-Failover" -PartnerServer FAILOVERSVRIP -MaxClientLeadTime 00:01:00 -SharedSecret SECRET -ServerRole Standby -ScopeID SCOPEID, SCOPEID, SCOPEID
 ```
+
+### Configure DHCPv6 scope on AD server
+
+Add a DHCPv6 scope.
+
+```powershell
+Add-DhcpServerv6Scope -Name "NAME" -Prefix fd00:0000:0000:0000::
+```
+
+Add an exclusion range to this scope. This will exclude addresses from fd00:: to fd00::ff.
+
+```powershell
+Add-DhcpServerv6Scope -Prefix fd00:0000:0000:0000:: -StartRange 0000:0000:0000:0000 -EndRange 0000:0000:0000:00ff
+```
+
