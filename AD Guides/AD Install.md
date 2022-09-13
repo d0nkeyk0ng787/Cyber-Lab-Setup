@@ -73,3 +73,7 @@ Import-Module ADDSDeployment
 ```posh
 Install-ADDSDomainController -DomaiName "Adatum.com" -InstallDns:$true -NoRebootOnCompletion:$false -Force:$true 
 ```
+
+Input a password when prompted and you are done.
+
+
