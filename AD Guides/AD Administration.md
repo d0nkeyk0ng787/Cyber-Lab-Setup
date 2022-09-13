@@ -9,7 +9,7 @@ First we must change the DNS settings for our **Win10** client to the ip of the 
 This can be done with the powershell command:
 
 ```powershell
-Set-DNSClientServerAddrss -InterfaceAlias Ethernet0 -ServerAddresses <SERVERIP>
+Set-DNSClientServerAddress -InterfaceAlias Ethernet0 -ServerAddresses <SERVERIP>
 ```
 
 Once we have changed the DNS server, we can add the client to the domain by doing the following.
