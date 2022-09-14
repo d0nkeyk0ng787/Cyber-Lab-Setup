@@ -18,10 +18,21 @@ Then we restart the service.
 ```posh
 Restart-Service dhcpserver
 ```
+You can verfy the security groups were installed.
+```posh
+Get-ADGroup -Filter * | Select-String "dhcp"
+```
+
 Next we want to add the DHCP server to the list of authorised DHCP servers in AD.
 ```posh
 Add-DhcpServerInDC -Dnsname dc1.xyz.local -IPAddress <IPADDRESS>
 ```
+We can verify we have authorised the server by doing the following.
+```posh
+Get-DhcpServerInDC
+```
+
+
 Notify the server that post install is complete.
 ```posh
 Set-ItemProperty –Path registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ServerManager\Roles\12 –Name ConfigurationState –Value 2
