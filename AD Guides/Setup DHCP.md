@@ -1,12 +1,33 @@
 # Setup DHCP
 
-### Configure DHCPv4 scope on AD server
+### Install DHCPv4 on AD server
 
 First we need to install DHCP on the server. 
 
 ```powershell
 Install-WindowsFeature DHCP -IncludeManagementTools
 ```
+
+Next we need to create the DHCP security groups.
+
+```posh
+netsh dhcp add securitygroups
+```
+
+Then we restart the service.
+```posh
+Restart-Service dhcpserver
+```
+Next we want to add the DHCP server to the list of authorised DHCP servers in AD.
+```posh
+Add-DhcpServerInDC -Dnsname dc1.xyz.local -IPAddress <IPADDRESS>
+```
+Notify the server that post install is complete.
+```posh
+Set-ItemProperty –Path registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ServerManager\Roles\12 –Name ConfigurationState –Value 2
+```
+
+### Configure a DHCP scope
 
 From there we want to create a DHCP scope for our internal network. 
 
