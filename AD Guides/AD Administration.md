@@ -25,7 +25,17 @@ This will prompt us for a password for the domain admin and then the system will
 In the server run the following command
 
 ```powershell
-New-ADUser -Name "john" -AccountPassword (Read-Host -AsSecureString "Account Password") -Enabled $true
+New-ADUser -Name "john" -AccountPassword (Read-Host -AsSecureString "Account Password") -ChangePasswordAtLogon $true -Enabled $true
+```
+
+```powershell
+$HARGS = @{
+    Name = "USERNAME"
+    AccountPassword = (ConvertTo-SecureString "PASSWORD" -AsPlainText -Force)
+    Enabled = $true
+    ChangePasswordAtLogon = $true
+}
+New-ADUser @HARGS
 ```
 
 This will then prompt for a password and then the user will be created. This can be verified by typing.
