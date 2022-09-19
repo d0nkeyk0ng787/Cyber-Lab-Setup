@@ -39,7 +39,7 @@ Get-NetIPAddress -InterfaceIndex <INTERFACE-INDEX>
 Change the DNS server to the servers IP:
 ```powershell
 Set-DNSClientServerAddress -InterfaceIndex 3 -ServerAddresses <SERVERIP>
-#Confirm with:
+#Confirm with
 Get-DNSClientServerAddress -InterfaceIndex 3
 ``` 
 
@@ -57,28 +57,29 @@ To install AD DS with management tookls, we simply enter the following.
 
 ```powershell
 Install-WindowsFeature AD-Domain-Services -IncludeManagementTools
-```
-
-This will then start the install process which will take a little while.
-
-Installation can be verified with the following command. Scroll up to the top and note the **X** in the box for **Active Directory Domain Services**.
-
-```powershell
+#Confirm with
 Get-WindowsFeature
 ```
+This will then start the install process which will take a little while.
 
 ### Configure AD DS
-
-First we want to import the module so that we can work with it.
-
-```powershell
-Import-Module ADDSDeployment
-```
 
 Now we want to install our AD DS forest and configure our server as a domain controller.
 
 ```powershell
-Install-ADDSForest
+#Create admin password
+$password = (ConvertTo-SecureString "Password1" -AsPlainText -Force)
+#Specify options we want to install our AD with
+$ADARGS = @{
+    DomainName = xyz.local
+    CreateDNSDelegation = $false
+    InstallDNS = $true
+    SafeModeAdministrationPassword = $password
+    Force = $true
+
+}
+#Install AD forest with our specified options
+Install-ADDSForest @ADARGS
 ```
 
 From here we will need to choose a domain name and enter in a password. The server will then restart and will now be a domain controller.
