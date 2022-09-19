@@ -33,20 +33,20 @@ Before we install AD, we need to ensure we have set a static IP address, DNS ser
 Change IP Address. Can add a default gateway with ```-DefaultGateway <DG>``` if needed.
 ```powershell
 New-NetIPAddress -InterfaceIndex <INTERFACE-INDEX> -IPAddress <SERVER-IP> -PrefixLength <SUBNETMASK>
-#Confirm with
+# Confirm with
 Get-NetIPAddress -InterfaceIndex <INTERFACE-INDEX>
 ``` 
 Change the DNS server to the servers IP:
 ```powershell
 Set-DNSClientServerAddress -InterfaceIndex 3 -ServerAddresses <SERVERIP>
-#Confirm with
+# Confirm with
 Get-DNSClientServerAddress -InterfaceIndex 3
 ``` 
 
 Rename Server:
 ```powershell
 Rename-Computer -NewName "<NAME>" -Restart
-#Confirm with
+# Confirm with
 Get-ComputerInfo -Property "*Name"
 ```
 
@@ -57,7 +57,7 @@ To install AD DS with management tookls, we simply enter the following.
 
 ```powershell
 Install-WindowsFeature AD-Domain-Services -IncludeManagementTools
-#Confirm with
+# Confirm with
 Get-WindowsFeature
 ```
 This will then start the install process which will take a little while.
@@ -67,9 +67,9 @@ This will then start the install process which will take a little while.
 Now we want to install our AD DS forest and configure our server as a domain controller.
 
 ```powershell
-#Create admin password
+# Create admin password
 $password = (ConvertTo-SecureString "Password1" -AsPlainText -Force)
-#Install AD forest with our specified options
+# Install AD forest with our specified options
 Install-ADDSForest -DomainName "xyz.local" -SafeModeAdministratorPassword $password -InstallDns:$true -Force:$true
 ```
 
@@ -79,9 +79,9 @@ Install-ADDSForest -DomainName "xyz.local" -SafeModeAdministratorPassword $passw
 We want to add our new server as a DC on an exisiting domain, this can be done by doing the following on the new server.
 
 ```powershell
-#Create admin password
+# Create admin password
 $password = (ConvertTo-SecureString "Password1" -AsPlainText -Force)
-#Add current server as a DC
+# Add current server as a DC
 Install-ADDSDomainController -DomaiName "Adatum.com" -InstallDns:$true -NoRebootOnCompletion:$false -Force:$true 
 ```
 

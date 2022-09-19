@@ -10,31 +10,27 @@ Install-WindowsFeature DHCP -IncludeManagementTools
 
 Next we need to create the DHCP security groups.
 
-```posh
+```cmd
 netsh dhcp add securitygroups
 ```
 
 Then we restart the service.
-```posh
+```powershell
 Restart-Service dhcpserver
-```
-You can verfy the security groups were installed.
-```posh
+# You can verfy the security groups were installed.
 Get-ADGroup -Filter * | Select-String "dhcp"
 ```
 
 Next we want to add the DHCP server to the list of authorised DHCP servers in AD.
-```posh
+```powershell
 Add-DhcpServerInDC -Dnsname dc1.xyz.local -IPAddress <IPADDRESS>
-```
-We can verify we have authorised the server by doing the following.
-```posh
+# We can verify we have authorised the server by doing the following.
 Get-DhcpServerInDC
 ```
 
 
 Notify the server that post install is complete.
-```posh
+```powershell
 Set-ItemProperty –Path registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ServerManager\Roles\12 –Name ConfigurationState –Value 2
 ```
 
