@@ -2,8 +2,6 @@
 
 ### Join client to domain
 
-If the server isn't part of a domain and is still in a workgroup we must open up our **SConfig** and select option **1**. We then want to input **d** for domain and type in the domain we gave the server. Otherwise continue with next steps.
-
 First we must change the DNS settings for our **Win10** client to the ip of the server so that it can resolve the hostname of said server.
 
 This can be done with the powershell command:
@@ -20,28 +18,27 @@ Add-Computer -DomainName lab.local -Credential lab\Administrator -Force -Restart
 
 This will prompt us for a password for the domain admin and then the system will restart.
 
+### Create Organisational Units
+
+```powershell
+# Create your main OU
+New-ADOrganizationalUnit -Name "XYZ" -Path "DC=xyz,DC=local" 
+```
+
 ### Create a new AD user
 
-In the server run the following command
-
+To create a new user we can do the following:
 ```powershell
-New-ADUser -Name "john" -AccountPassword (Read-Host -AsSecureString "Account Password") -ChangePasswordAtLogon $true -Enabled $true
-```
-
-```powershell
-$HARGS = @{
-    Name = "USERNAME"
-    AccountPassword = (ConvertTo-SecureString "PASSWORD" -AsPlainText -Force)
-    Enabled = $true
+$args = @{
+    Name = "jsmith"
+    AccountPassword = (ConvertTo-SecureString "Password1" -AsPlainText -Force)
     ChangePasswordAtLogon = $true
+    Enabled = $true
+    DisplayName = "John Smith"
 }
-New-ADUser @HARGS
-```
-
-This will then prompt for a password and then the user will be created. This can be verified by typing.
-
-```powershell
-Get-ADUser -Filter *
+New-ADUser @args
+# Verify creation
+Get-ADUser -Identity 'USERNAME'
 ```
 
 ### Join a user to a group
