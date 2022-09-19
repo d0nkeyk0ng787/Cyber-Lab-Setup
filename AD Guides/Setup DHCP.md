@@ -47,7 +47,7 @@ Set-DhcpServerv4OptionValue -DNSServer <DNSSVRIP> -DNSDomain <DNSDOMAINNAME> -Ro
 Set-DhcpServerv4OptionValue -ScopeId <SCOPEIDADDRESS> -Router <DEFAULTROUTER>
 
 # Create an Exclusion range on the scope
-Add-Dhcpserverv4ExclusionRange -ScopeId 10.1.1.0 -StartRange 10.1.1.1 -EndRange 10.1.1.10
+Add-Dhcpserverv4ExclusionRange -ScopeId <NETWORK-ADDRESS> -StartRange <START-ADDRESS> -EndRange <LAST-ADDRESS>
 
 # Add a lease time to a scope. This will add a lease time of 1 day.
 Set-DhcpServerv4Scope -Name "Internal" -StartRange <FIRSTIPADDRESS> -EndRange <LASTIPADDRESS> -SubnetMask <SUBNETMASK> -Description "Internal Network" -LeaseDuration 01.00:00:00
