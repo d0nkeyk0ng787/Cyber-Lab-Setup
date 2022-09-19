@@ -69,35 +69,19 @@ Now we want to install our AD DS forest and configure our server as a domain con
 ```powershell
 #Create admin password
 $password = (ConvertTo-SecureString "Password1" -AsPlainText -Force)
-#Specify options we want to install our AD with
-$ADARGS = @{
-    DomainName = xyz.local
-    CreateDNSDelegation = $false
-    InstallDNS = $true
-    SafeModeAdministrationPassword = $password
-    Force = $true
-
-}
 #Install AD forest with our specified options
-Install-ADDSForest @ADARGS
+Install-ADDSForest -DomainName "xyz.local" -SafeModeAdministratorPassword $password -InstallDns:$true -Force:$true
 ```
 
-From here we will need to choose a domain name and enter in a password. The server will then restart and will now be a domain controller.
-
-One last thing we will need to go back into **SConfig** upon the servers reboot and change the **DNS** to our servers IP and not **127.0.0.1**.
 
 ### Configure a DC on an exisitng Domain
 
 We want to add our new server as a DC on an exisiting domain, this can be done by doing the following on the new server.
 
-```posh
-Import-Module ADDSDeployment
-```
-
-```posh
+```powershell
+#Create admin password
+$password = (ConvertTo-SecureString "Password1" -AsPlainText -Force)
+#Add current server as a DC
 Install-ADDSDomainController -DomaiName "Adatum.com" -InstallDns:$true -NoRebootOnCompletion:$false -Force:$true 
 ```
-
-Input a password when prompted and you are done.
-
 
