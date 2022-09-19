@@ -26,9 +26,32 @@ This will launch a prompt where you will enter the remote hosts username and pas
 Enter-PSSession <SESSIONID>
 ```
 
-### Install AD On Server Core
+### Configure Static Address, DNS & Change Computer Name
 
-Before we install AD, we need to ensure we have set a static IP address for the server. This can be done from **SConfig** pressing option **8**. From here set the address, default gateway and DNS server.
+Before we install AD, we need to ensure we have set a static IP address, DNS server and rename the server. 
+
+Change IP Address. Can add a default gateway with ```-DefaultGateway <DG>``` if needed.
+```powershell
+New-NetIPAddress -InterfaceIndex <INTERFACE-INDEX> -IPAddress <SERVER-IP> -PrefixLength <SUBNETMASK>
+#Confirm with
+Get-NetIPAddress -InterfaceIndex <INTERFACE-INDEX>
+``` 
+Change the DNS server to the servers IP:
+```powershell
+Set-DNSClientServerAddress -InterfaceIndex 3 -ServerAddresses <SERVERIP>
+#Confirm with:
+Get-DNSClientServerAddress -InterfaceIndex 3
+``` 
+
+Rename Server:
+```powershell
+Rename-Computer -NewName "<NAME>" -Restart
+#Confirm with
+Get-ComputerInfo -Property "*Name"
+```
+
+
+### Install AD On Server Core
 
 To install AD DS with management tookls, we simply enter the following.
 
