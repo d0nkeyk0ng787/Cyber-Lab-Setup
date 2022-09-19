@@ -82,6 +82,5 @@ We want to add our new server as a DC on an exisiting domain, this can be done b
 # Create admin password
 $password = (ConvertTo-SecureString "Password1" -AsPlainText -Force)
 # Add current server as a DC
-Install-ADDSDomainController -DomaiName "Adatum.com" -InstallDns:$true -NoRebootOnCompletion:$false -Force:$true 
+Install-ADDSDomainController -DomaiName "xyz.local" -InstallDns:$true -NoRebootOnCompletion:$false -Force:$true 
 ```
-
