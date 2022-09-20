@@ -2,7 +2,7 @@
 Import-Module ActiveDirectory
 
 # Store csv file data in a variable $Users
-$Users = Import-Csv C:\Users\Administrator\Documents\CE\ADMakeScript\userschema.csv -Delimiter ","
+$Users = Import-Csv PATHTOCSV -Delimiter ","
 
 # Iterate over each row in the csv file and assign the data to variables
 foreach ($User in $Users) {
