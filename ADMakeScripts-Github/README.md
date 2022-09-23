@@ -20,8 +20,8 @@ Script change requirements:
 Template requirements:
 * Simply enter in the required information in the format given. An example:
 ```csv
-FirstName  LastName   Username      Password    OU
-John       Smith	  john.smith	Password	OU=Employees,OU=Users,OU=XYZ,DC=xyz,DC=local
+FirstName  LastName     Username        Password    OU
+John       Smith		john.smith		Password	OU=Employees,OU=Users,OU=XYZ,DC=xyz,DC=local
 ```
 
 ### Hyper-V VM Creator
