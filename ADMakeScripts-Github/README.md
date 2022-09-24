@@ -2,9 +2,9 @@
 
 ### TODO
 
-- [] Auto group script
-- [] Auto DHCP & DNS
-- [] Merge User, OU, & group scripts 
+- [ ] Auto group script
+- [ ] Auto DHCP & DNS
+- [ ] Merge User, OU, & group scripts 
 
 ### Auto OU Script
 
