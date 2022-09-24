@@ -35,3 +35,12 @@ Template requirements:
 VMName Memory Path     NewVHDPath StorageSize ISOPath
 DC1    2048   D:\VMS\  D:\VMS\    60          D:\ISOS\
 ```
+
+### Pre AD Script
+Script change requirements:
+* Change the values for the 5 variables to match your networks requirements.
+
+### Install AD Script
+Script change requirements:
+* Change domain name value
+* Change the value of the password
