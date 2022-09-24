@@ -1,5 +1,11 @@
 # AD Automation Scripts - README
 
+### TODO
+
+- [] Auto group script
+- [] Auto DHCP & DNS
+- [] Merge User, OU, & group scripts 
+
 ### Auto OU Script
 
 Script change requirements:
