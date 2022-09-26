@@ -1,1 +1,2 @@
 VMName,Memory,Path,NewVHDPath,StorageSize,ISOPath
+Test1,2048,C:\VirtualMachines\Machines\,C:\VirtualMachines\Machines\,60,C:\ISOImages\winserver2022.iso

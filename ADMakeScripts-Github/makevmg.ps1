@@ -1,20 +1,22 @@
 # Powershell script to create a virtual machine in Hyper-V
 # Created by Gnome787  | 22 SEP 22
 
-# Create a variable to convert MB to bytes.
-$MemPower = [Math]::Pow(2,20) 
+# 1 MB in B (Binary)
+$1BM = 1048576
+# 1 GB in B (Binary)
+$1BG = 1073741824
 
 # Store csv file in a variable
-$VMs = Import-Csv CSV-PATH-HERE -Delimiter ","
+$VMs = Import-Csv PATH -Delimiter ","
 
 # Iterate over each row in the csv file and assign the data to variables
 foreach($VM in $VMs){
     # Create variables for the parameters of the New-VM command based on values in the csv file
     $VMName = [string]$VM.vmname
-    $Memory = [int]$VM.memory * $Power
+    $Memory = [int]$VM.memory * $1BM
     $Path = [string]$VM.path + $VMName
     $NewVHDPath = [string]$VM.newvhdpath + $VMName + "\" + $VMName + ".vhdx"
-    $Storagesize = [int]$VM.storagesize * 1073741824
+    $Storagesize = [int]$VM.storagesize * $1BG
     $ISOPath = $VM.isopath
 
     # Create a vm check variable
