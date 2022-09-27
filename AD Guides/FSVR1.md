@@ -69,7 +69,7 @@ New-SmbShare @smbparams
 Install-WindowsFeature FS-DFS-Namespace -IncludeManagementTools
 ```
 
-**Setup DFS**
+**Create DFS**
 ```posh
 # Create DFS namespace
 New-DfsnRoot -Path "\\xyz.local\EmployeeData" -Type DomainV2 -TargetPath "\\fsvr1.xyz.local\EmployeeData"
