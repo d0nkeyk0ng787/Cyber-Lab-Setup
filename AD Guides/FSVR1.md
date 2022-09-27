@@ -30,3 +30,14 @@ Add-Computer @domainparams
 ```
 
 ### File Server Setup
+
+```powershell
+# Initialise a new disk using GPT partition style
+Initialize-Disk -Number 1 -PartitionStyle GPT
+# Create a new partition
+New-Partition -DiskNumber 1 -UseMaximumSize -DriveLetter S
+# Format the partition
+Format-Volume -DriveLetter S -FileSystem "NTFS" -NewFileSystemLabel "Network Share"
+
+# Verify the volume was created
+Get-Volume
