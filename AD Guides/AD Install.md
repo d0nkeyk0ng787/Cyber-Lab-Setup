@@ -55,6 +55,13 @@ $password = (ConvertTo-SecureString "Password1" -AsPlainText -Force)
 Install-ADDSForest -DomainName "xyz.local" -SafeModeAdministratorPassword $password -InstallDns:$true -Force:$true
 ```
 
+### DNS Forward
+
+```powershell
+# Add a DNS forwarded
+Set-DnsServerForwarder -IPAddress "1.1.1.1" -PassThru
+```
+
 
 ### Configure a DC on an exisitng Domain
 
