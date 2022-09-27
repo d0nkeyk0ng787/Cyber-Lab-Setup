@@ -36,24 +36,23 @@ New-ADUser @userparams
 Get-ADUser -Identity 'USERNAME'
 ```
 
-### Join a user to a group
-
-Let's say we want to add a user to the domain admins group. First we want to return the name of that group so we do.
+### Groups
 
 ```powershell
-Get-AdGroupMember "Administrators"
-```
-
-This will return all the administrator groups. We see **Domain Admins** is what we want.
+# Create a new group for staff
+$groupparams = @{
+    Name = "Staff"
+    SamAccountName = "Staff"
+    GroupCategory = "Security"
+    GroupScope = "Global"
+    DisplayName = "Staff"
+    Path = "OU=SecurityGroups,OU=Groups,OU=XYZ,DC=xyz,DC=local"
+    Description = "Members of this group are staff at XYZ"
+}
+New-ADGroup @groupparams
 
 From there we add our user to this group by doing.
 
-```powershell
-Add-AdGroupMember -Identity "Domain Admins" -Members john
-```
-
-Then we can verify our user has join the group by doing.
-
-```powershell
-Get-AdGroupMember "Domain Admins"
+# Join user to group
+Add-AdGroupMember -Identity "Staff" -Members "john.smith"
 ```
