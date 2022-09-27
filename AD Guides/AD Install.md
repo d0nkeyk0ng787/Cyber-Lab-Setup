@@ -1,29 +1,11 @@
 # AD Install
 
-### Start a PSRemoting Session
-
-On a remote machine start WinRM.
+### Create a NAT Switch on Host
 
 ```powershell
-Start-Service WinRM
-```
-
-Now add the remote host to the trusted hosts.
-
-```powershell
-Set-Item WSMan:\localhost\clients\trustedhosts\ -Value <IPADDRESS>
-```
-
-Now start a new PSSession.
-
-```powershell
-New-PSSession -ComputerName <IPADDRESS> -Credential (Get-Credentail)
-```
-
-This will launch a prompt where you will enter the remote hosts username and password and then it will start a session. From there you just enter the session and will be able to remotely configure the host through powershell.
-
-```powershell
-Enter-PSSession <SESSIONID>
+New-VMSwitch -SwitchName "NATSwitch" -SwitchType Internal
+New-NetIPAddress -IPAddress 192.168.1.1 -PrefixLength 24 -InterfaceAlias "vEthernet (NATSwitch)"
+New-NetNAT -Name "NATNetwork" -InternalIPInterfaceAddressPrefix 192.168.1.0/24
 ```
 
 ### Configure Static Address, DNS & Change Computer Name
