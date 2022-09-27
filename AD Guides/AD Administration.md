@@ -52,7 +52,5 @@ $groupparams = @{
 New-ADGroup @groupparams
 
 # From there we add our user to this group by doing.
-
-# Join user to group
 Add-AdGroupMember -Identity "Staff" -Members "john.smith"
 ```
