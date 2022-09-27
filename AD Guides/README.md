@@ -3,7 +3,7 @@
 ### TODO
 
 - [ ] Seperate guide for using automation scripts
-- [ ] Make a DHCP standalone server
+- [x] Make a DHCP standalone server
 - [ ] Finish AD Administration guide (Add all OUs, groups, & add commands for creating another domain admin)
 
 ### AD Guides
