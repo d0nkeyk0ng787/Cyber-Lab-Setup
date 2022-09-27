@@ -29,14 +29,14 @@ New-ADOrganizationalUnit -Name "XYZ" -Path "DC=xyz,DC=local"
 
 To create a new user we can do the following:
 ```powershell
-$args = @{
+$userparams = @{
     Name = "jsmith"
     AccountPassword = (ConvertTo-SecureString "Password1" -AsPlainText -Force)
     ChangePasswordAtLogon = $true
     Enabled = $true
     DisplayName = "John Smith"
 }
-New-ADUser @args
+New-ADUser @userparams
 # Verify creation
 Get-ADUser -Identity 'USERNAME'
 ```
