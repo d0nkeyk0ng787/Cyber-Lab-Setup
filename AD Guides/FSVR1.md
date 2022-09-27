@@ -31,6 +31,7 @@ Add-Computer @domainparams
 
 ### File Server Setup
 
+**Create a disk**
 ```powershell
 # Initialise a new disk using GPT partition style
 Initialize-Disk -Number 1 -PartitionStyle GPT
@@ -41,3 +42,39 @@ Format-Volume -DriveLetter S -FileSystem "NTFS" -NewFileSystemLabel "Network Sha
 
 # Verify the volume was created
 Get-Volume
+```
+
+**Create an SMB-Share**
+```posh
+# Install File Services role
+Install-WindowsFeature File-Services
+
+# Create an SMB share
+$smbparams = @{
+	Name = "EmployeeData"
+	Path = "S:\Shares\EmployeeData\"
+	FullAccess = "Domain Admins"
+	ReadAccess = "Domain Users"
+	FolderEnumerationMode = "AccessBased"
+}
+
+New-SmbShare @smbparams
+```
+
+### Setup DFS
+
+**Install DFS**
+```posh
+# Install windows feature
+Install-WindowsFeature FS-DFS-Namespace -IncludeManagementTools
+```
+
+**Setup DFS**
+```posh
+# Create DFS namespace
+New-DfsnRoot -Path "\\xyz.local\EmployeeData" -Type DomainV2 -TargetPath "\\fsvr1.xyz.local\EmployeeData"
+
+# Confirm it was created
+Get-DfsnRoot -Path "\\xyz.local\EmployeeData" | Format-List 
+```
+
