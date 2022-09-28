@@ -34,6 +34,7 @@ John       Smith john.smith	Password  OU=Employees,OU=Users,OU=XYZ,DC=xyz,DC=loc
 
 Script change requirements:
 * Change the path of the vmschema.csv file to wherever you have it installed.
+* If you have more then 1 VMSwitch, specify the name of the switch in the script at line 40
 
 Template requirements:
 * Simply enter in the required information in the format given. An example:
