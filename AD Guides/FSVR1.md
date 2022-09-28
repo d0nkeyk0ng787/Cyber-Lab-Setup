@@ -153,7 +153,6 @@ $smbparams = @{
 	FullAccess = "Domain Admins", "Domain Users"
 	FolderEnumerationMode = "AccessBased"
 }
-
 New-SmbShare @smbparams
 
 # Modify existing AD users - This is done on the DC!!
