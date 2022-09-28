@@ -1,7 +1,5 @@
 # Setup DNS 
 
-**Note** - A number of these commands have ```-PassThru``` added to the end of them. This command simply print the output to the console so you can see the changes.
-
 ### Install DNS
 
 ```posh
