@@ -13,3 +13,9 @@ Add-Computer -DomainName xyz.local -Credential xyz\Administrator -Force -Restart
 ```
 
 This will prompt us for a password for the domain admin and then the system will restart.
+
+### Install RSAT
+
+```posh
+Get-WindowsCapability -Name RSAT* -Online | Add-WindowsCapability -Online
+```
