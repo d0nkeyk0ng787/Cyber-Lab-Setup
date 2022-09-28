@@ -142,3 +142,37 @@ $Params = @{
 }
 set-GPRegistryValue @Params
 ```
+
+### Create home directories for employees
+
+```posh
+# Create the SMB share
+$smbparams = @{
+	Name = "EmployeeHomes"
+	Path = "S:\Shares\"
+	FullAccess = "Domain Admins", "Domain Users"
+	FolderEnumerationMode = "AccessBased"
+}
+
+New-SmbShare @smbparams
+
+# Modify existing AD users - This is done on the DC!!
+# Get all AD users
+Get-ADUser -Filter 'Name -like "*"' -SearchBase "OU=Users,OU=XYZ,DC=xyz,DC=local" | Select-Object -Property Name 
+
+# Copy the names into a csv file and copy the file onto the DC
+Copy-VMFile "XYZ-DC1"-SourcePath "C:\Users\Administrator\Documents\CE\ADMakeScript\Users\users.csv" -DestinationPath "C:\Users\Administrator\Documents\Scripts" -CreateFullPath -FileSource Host
+
+# Import the csv file
+$Users = Import-Csv "C:\Users\Administrator\Documents\Scripts\users.csv" -Delimiter ","
+
+# Iterate through the users and set home directory for each user
+foreach($User in $Users){
+    # Create username variable
+    $UName = [string]$User.name
+    
+    Set-ADUser -Identity $UName -HomeDrive "N:" -HomeDirectory "\\fsvr1.xyz.local\EmployeeHomes\%username%"
+}
+```
+
+### User folder redirection
