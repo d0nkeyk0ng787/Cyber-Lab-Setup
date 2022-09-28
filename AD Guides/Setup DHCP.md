@@ -62,7 +62,7 @@ Set-ItemProperty –Path registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ServerM
 Add-DhcpServerv4Scope -Name "Internal" -StartRange 192.168.1.50 -EndRange 192.168.1.254 -SubnetMask 255.255.255.0 -Description "Internal Network"
 
 # Globally define the DNSServer IP, Domain and the default router.
-Set-DhcpServerv4OptionValue -DNSServer 192.168.1.2 -DNSDomain xyz.local -Router 192.168.1.2
+Set-DhcpServerv4OptionValue -DNSServer 192.168.1.2 -DNSDomain xyz.local -Router 192.168.1.1
 
 # Create an Exclusion range on the scope
 Add-Dhcpserverv4ExclusionRange -ScopeId 192.168.1.0 -StartRange 192.168.1.1 -EndRange 192.168.1.49
