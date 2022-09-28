@@ -34,6 +34,9 @@ $userparams = @{
 New-ADUser @userparams
 # Verify creation
 Get-ADUser -Identity 'USERNAME'
+
+# There are issues with users logging in without adding them to this group
+Add-ADGroupMember -Identity "Remote Desktop Users" -Members "sarah.shaw"
 ```
 
 ### Groups
