@@ -138,7 +138,7 @@ $Params = @{
     Key = "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\NonEnum"
     Type = "DWORD"
     ValueName = "{645FF040-5081-101B-9F08-00AA002F954E}"
-    Value = 1
+    Value = 0
 }
 set-GPRegistryValue @Params
 ```
@@ -215,7 +215,7 @@ $Params = @{
     Key = "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\NonEnum"
     Type = "DWORD"
     ValueName = "{645FF040-5081-101B-9F08-00AA002F954E}"
-    Value = 1
+    Value = 0
 }
 Set-GPRegistryValue @Params
 ```
