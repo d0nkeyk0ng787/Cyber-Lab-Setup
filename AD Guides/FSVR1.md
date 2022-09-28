@@ -171,6 +171,7 @@ foreach($User in $Users){
     # Create username variable
     $UName = [string]$User.name
     
+    # Set the home drive and home directory for each user
     Set-ADUser -Identity $UName -HomeDrive "N:" -HomeDirectory "\\fsvr1.xyz.local\EmployeeHomes\%username%"
 }
 ```
