@@ -219,3 +219,16 @@ $Params = @{
 }
 Set-GPRegistryValue @Params
 ```
+
+### Folder Redirection
+
+Currently haven't found a way to do the entire folder redirection policy with powershell exclusively.
+```posh
+# Create the GPO
+$gpoOuObj=New-GPO -Name "UserHomeRedirect"
+
+# Link the GPO to the OU
+New-GPlink -Guid $gpoOuObj -Target "OU=Users,OU=XYZ,DC=xyz,DC=local"
+```
+
+From there go into GPMC and configure the GPO as needed.
