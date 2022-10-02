@@ -1,2 +1,3 @@
 secedit /export /cfg C:\Windows\Tasks\secpol.cfg
 New-NetIPAddress -InterfaceIndex 6 -IPAddress <IPADDRESS> -PrefixLength 24 -DefaultGateway <DEFAULTGATEWAY>
+Configure Components and Settings in an Answer File msdocs
