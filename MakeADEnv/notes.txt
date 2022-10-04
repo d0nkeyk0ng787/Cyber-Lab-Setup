@@ -1,0 +1,10 @@
+# Get the DC
+$GetVM = Get-VM |Where State -eq 'Off' | Where-Object -Property Name -Match "DC1"
+# Get the state
+$VMState = $GetVM | Select-Object -Property State
+
+# Start the DC
+if($VMState -eq "Off"){
+    Start-VM -Name "DC1"
+    Write-Host "$VMName is running" -ForegroundColor Green
+}

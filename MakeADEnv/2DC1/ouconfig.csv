@@ -1,0 +1,11 @@
+Name,Path
+XYZ,"DC=xyz,DC=local"
+Devices,"OU=XYZ,DC=xyz,DC=local"
+Servers,"OU=Devices,OU=XYZ,DC=xyz,DC=local"
+Workstations,"OU=Devices,OU=XYZ,DC=xyz,DC=local"
+Users,"OU=XYZ,DC=xyz,DC=local"
+Admins,"OU=Users,OU=XYZ,DC=xyz,DC=local"
+Employees,"OU=Users,OU=XYZ,DC=xyz,DC=local"
+Groups,"OU=XYZ,DC=xyz,DC=local"
+SecurityGroups,"OU=Groups,OU=XYZ,DC=xyz,DC=local"
+DistributionLists,"OU=Groups,OU=XYZ,DC=xyz,DC=local"

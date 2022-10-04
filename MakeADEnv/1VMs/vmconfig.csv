@@ -1,0 +1,5 @@
+VMName,Memory,Path,NewVHDPath,StorageSize,ISOPath
+DC1,2048,H:\VMs\,H:\VMs\,60,H:\ISO\SERVER_EVAL_x64FRE_en-us.iso
+CLI1,2048,H:\VMs\,H:\VMs\,60,H:\ISO\Win10_21H2_EnglishInternational_x64.iso
+DHCP,2048,H:\VMs\,H:\VMs\,60,H:\ISO\SERVER_EVAL_x64FRE_en-us.iso
+FSVR1,2048,H:\VMs\,H:\VMs\,60,H:\ISO\SERVER_EVAL_x64FRE_en-us.iso
