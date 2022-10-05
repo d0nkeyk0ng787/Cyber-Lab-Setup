@@ -38,4 +38,4 @@ Install-WindowsFeature FS-DFS-Namespace -IncludeManagementTools | Out-Null
 # Create DFS namespace
 New-DfsnRoot -Path "\\xyz.local\EmployeeHomes" -Type DomainV2 -TargetPath "\\fsvr1.xyz.local\EmployeeHomes" | Out-Null
 
-Write-Host "DFS configured and setup for EmployeeHomes. Implementing drive mapping."
+Write-Host "DFS configured and setup for EmployeeHomes. Implementing drive mapping." -ForegroundColor Cyan
