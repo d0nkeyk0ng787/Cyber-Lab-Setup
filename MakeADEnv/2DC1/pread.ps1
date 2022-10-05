@@ -4,6 +4,8 @@
 # Disable IPv6
 Disable-NetAdapterBinding -Name 'Ethernet' -ComponentID 'ms_tcpip6' | Out-Null
 
+Write-Host "IPv6 Disabled" -ForegroundColor Cyan
+
 # Create variables for static IP
 $IntName = "Ethernet"
 $Gateway = "192.168.100.1"
@@ -23,6 +25,7 @@ Set-DnsClientServerAddress -InterfaceAlias $IntName -ServerAddress $SVRIP | Out-
 
 # Print output
 Write-Host "Server has been assigned a DNS address of $SVRIP" -ForegroundColor Cyan
+Write-Host "Server has been renamed DC1" -ForegroundColor Cyan
 
 # Rename computer
 Rename-Computer -NewName $SVRName -Restart | Out-Null
