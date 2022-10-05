@@ -3,25 +3,34 @@
 # Disable IPv6
 Disable-NetAdapterBinding -Name 'Ethernet' -ComponentID 'ms_tcpip6' | Out-Null
 
+Write-Host "IPv6 Disabled" -ForegroundColor Cyan
+
+# Reusable variables
+$IP = "192.168.100.3"
+$Gateway = "192.168.100.1"
+$DC = "192.168.100.2"
+
 # Assign a static IP
 $ipparams = @{
     InterfaceIndex = (Get-NetAdapter).InterfaceIndex
-	IPAddress = "192.168.100.3"
+	IPAddress = $IP
 	PrefixLength = 24
-	DefaultGateway = "192.168.100.1"
+	DefaultGateway = $Gateway
 }
 
 New-NetIPAddress @ipparams | Out-Null
 
 # Completed message
-Write-Host "Server has been assigned an IP of 192.168.100.3" -ForegroundColor Cyan
-Write-Host "Server has been assigned a Default Gateway of 192.168.100.1" -ForegroundColor Cyan
+Write-Host "Server has been assigned an IP of $IP" -ForegroundColor Cyan
+Write-Host "Server has been assigned a Default Gateway of $Gateway" -ForegroundColor Cyan
 
 # Change the DNS server to DC1 
-Set-DnsClientServerAddress -InterfaceAlias (Get-NetAdapter).name -ServerAddresses 192.168.100.2  | Out-Null
+Set-DnsClientServerAddress -InterfaceAlias (Get-NetAdapter).name -ServerAddresses $DC  | Out-Null
 
 # Completed message
-Write-Host "Servers DNS server has been changed to 192.168.100.2" -ForegroundColor Cyan
+Write-Host "Servers DNS server has been changed to $DC" -ForegroundColor Cyan
+
+Write-Host "Joining server to the domain" -ForegroundColor Cyan
 
 # Create a domain credential object
 $Password = ConvertTo-SecureString "Password1" -AsPlainText -Force
@@ -37,4 +46,4 @@ $domainparams = @{
 	Restart = $true
 }
 
-Add-Computer @domainparams
+Add-Computer @domainparams | Out-Null
