@@ -3,7 +3,7 @@
 # DNS
 
 # Add a DNS forwarded
-Set-DnsServerForwarder -IPAddress "1.1.1.1" -PassThru
+Set-DnsServerForwarder -IPAddress "1.1.1.1" | Out-Null
 
 # OUs
 
