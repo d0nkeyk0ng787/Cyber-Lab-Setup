@@ -1,6 +1,0 @@
-FirstName,LastName,Username,Password,OU
-John,Smith,john.smith,Password1,"OU=Employees,OU=Users,OU=XYZ,DC=xyz,DC=local"
-Sam,Smith,sam.smith,Password1,"OU=Employees,OU=Users,OU=XYZ,DC=xyz,DC=local"
-Kane,Williams,kane.williams,Password1,"OU=Employees,OU=Users,OU=XYZ,DC=xyz,DC=local"
-Don,Jones,don.jones,Password1,"OU=Employees,OU=Users,OU=XYZ,DC=xyz,DC=local"
-Alex,Samuels,alex.samuels,Password1,"OU=Employees,OU=Users,OU=XYZ,DC=xyz,DC=local"
